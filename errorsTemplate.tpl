@@ -15,8 +15,11 @@ func Error{{ .CamelValue }}(format string, args ...interface{}) *errors.Error {
 }
 
 {{ if .HasComment }}{{ .Comment }}{{ end -}}
+{{ if .HasFormat }}func ErrorMessage{{ .CamelValue }}(args ...interface{}) *errors.Error {
+	 return errors.New({{ .HTTPCode }}, {{ .Name }}_{{ .Value }}.String(), fmt.Sprintf("{{ .Message }}", args...))
+}{{ else }}
 func ErrorMessage{{ .CamelValue }}() *errors.Error {
 	 return errors.New({{ .HTTPCode }}, {{ .Name }}_{{ .Value }}.String(), "{{ .Message }}")
-}
+}{{ end -}}
 
 {{- end }}

@@ -106,6 +106,7 @@ func genErrorsReason(_ *protogen.Plugin, _ *protogen.File, g *protogen.Generated
 			Message:    enumMessage,
 			Comment:    comment,
 			HasComment: len(comment) > 0,
+			HasFormat:  containsFormatSpecifiers(enumMessage),
 		}
 		ew.Errors = append(ew.Errors, err)
 	}
@@ -142,4 +143,15 @@ func case2Camel(name string) string {
 	}
 
 	return strings.Join(words, "")
+}
+
+func containsFormatSpecifiers(s string) bool {
+	formatSpecifiers := []string{"%s", "%d", "%f", "%v"}
+
+	for _, specifier := range formatSpecifiers {
+		if strings.Contains(s, specifier) {
+			return true
+		}
+	}
+	return false
 }

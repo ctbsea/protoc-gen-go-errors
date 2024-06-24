@@ -17,6 +17,7 @@ type errorInfo struct {
 	CamelValue string
 	Comment    string
 	HasComment bool
+	HasFormat  bool
 }
 
 type errorWrapper struct {

@@ -7,7 +7,7 @@
 
 ## 2. 安装
 ```bash
-go install github.com/lyouthzzz/protoc-gen-go-errors
+go install github.com/ctbsea/protoc-gen-go-errors
 ```
 
 ## 3. 示例
@@ -20,7 +20,7 @@ package example;
 
 import "errors/errors.proto";
 
-option go_package = "github.com/lyouthzzz/protoc-gen-go-errors/examples";
+option go_package = "github.com/ctbsea/protoc-gen-go-errors/examples";
 
 enum ErrorReason {
   // 设置缺省错误码
@@ -35,7 +35,7 @@ enum ErrorReason {
   // 用户名或密码错误
   ERROR_REASON_USERNAME_OR_PASSWORD_ERROR = 2 [(errors.code) = 401];
   // 用户未找到
-  ERROR_REASON_USER_NOT_FOUND = 3 [(errors.code) = 404, (errors.message) = "用户不存在"];
+  ERROR_REASON_USER_NOT_FOUND = 3 [(errors.code) = 404, (errors.message) = "用户不存在 %s"];
 }
 ```
 
@@ -127,7 +127,7 @@ func ErrorErrorReasonUserNotFound(format string, args ...interface{}) *errors.Er
 }
 
 // 用户未找到
-func ErrorMessageErrorReasonUserNotFound() *errors.Error {
-	return errors.New(404, ErrorReason_ERROR_REASON_USER_NOT_FOUND.String(), "用户不存在")
+func ErrorMessageErrorReasonUserNotFound(args ...interface{}) *errors.Error {
+	return errors.New(404, ErrorReason_ERROR_REASON_USER_NOT_FOUND.String(), fmt.Sprintf("用户不存在 %s", args...))
 }
 ```
