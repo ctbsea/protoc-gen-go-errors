@@ -3,7 +3,7 @@ API_PROTO_FILES=$(shell find examples -name *.proto)
 .PHONY: install
 # install proto-gen-go-errors plugin
 install:
-	go install github.com/ctbsea/protoc-gen-go-errors
+	go install github.com/ctbsea/protoc-gen-go-errors@v0.0.1
 
 .PHONY: errors
 # generate errors code
