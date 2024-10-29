@@ -34,8 +34,8 @@ enum ErrorReason {
   ERROR_REASON_USER_ALREADY_EXISTS = 1 [(errors.message) = "用户已存在"];
   // 用户名或密码错误
   ERROR_REASON_USERNAME_OR_PASSWORD_ERROR = 2 [(errors.code) = 401];
-  // 用户未找到
-  ERROR_REASON_USER_NOT_FOUND = 3 [(errors.code) = 404, (errors.message) = "用户不存在 %s"];
+  // 用户未找到  code=100001, 特殊code提供给客户端处理， code没有按照http status定义
+  ERROR_REASON_USER_NOT_FOUND = 3 [(errors.code) = 100001, (errors.message) = "用户不存在 %s"];
 }
 ```
 
