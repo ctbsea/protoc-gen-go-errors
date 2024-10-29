@@ -118,16 +118,16 @@ func IsErrorReasonUserNotFound(err error) bool {
 		return false
 	}
 	e := errors.FromError(err)
-	return e.Reason == ErrorReason_ERROR_REASON_USER_NOT_FOUND.String() && e.Code == 404
+	return e.Reason == ErrorReason_ERROR_REASON_USER_NOT_FOUND.String() && e.Code == 100001
 }
 
 // 用户未找到
 func ErrorErrorReasonUserNotFound(format string, args ...interface{}) *errors.Error {
-	return errors.New(404, ErrorReason_ERROR_REASON_USER_NOT_FOUND.String(), fmt.Sprintf(format, args...))
+	return errors.New(100001, ErrorReason_ERROR_REASON_USER_NOT_FOUND.String(), fmt.Sprintf(format, args...))
 }
 
 // 用户未找到
 func ErrorMessageErrorReasonUserNotFound(args ...interface{}) *errors.Error {
-	return errors.New(404, ErrorReason_ERROR_REASON_USER_NOT_FOUND.String(), fmt.Sprintf("用户不存在 %s", args...))
+	return errors.New(100001, ErrorReason_ERROR_REASON_USER_NOT_FOUND.String(), fmt.Sprintf("用户不存在 %s", args...))
 }
 ```
